@@ -36,7 +36,7 @@ for i, st in enumerate(stats):
 # start the timer
 beginner = time.time()
 
-for idx in range(5):
+while 1 :
     checker = time.time()
     res = os.popen(cmd).readlines()
     outfile.write("%.3f"%(checker-beginner)+',')
