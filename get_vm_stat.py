@@ -32,9 +32,9 @@ res = os.popen(sys_info).readlines()
 # sys_info_file.close()
 
 pair = res[0].split(":")
-file_string = "stats_mem"+pair[1].rstrip()
+file_string = "stats_mem"+str(int(pair[1])/1000000000)
 pair = res[1].split(":")
-file_string += "_cpu"+pair[1].rstrip()+".csv"
+file_string += "_cpu"+str(int(pair[1]))+".csv"
 
 cmd = "sysctl vm.stats.vm"
 
