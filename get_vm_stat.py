@@ -23,14 +23,24 @@ stats = [
 'v_swappgsout',
 'v_swappgsin']
 
-sys_info = "sysctl hw.ncpu hw.physmem"
+sys_info = "sysctl hw.physmem hw.ncpu"
 res = os.popen(sys_info).readlines()
+
+# sys_info_file = open('sys_info.txt','w+')
+# for line in res:
+    # sys_info_file.write(line)
+# sys_info_file.close()
+
+pair = res[0].split(":")
+file_string = "stats_mem"+pair[1].rstrip()
+pair = res[1].split(":")
+file_string += "_cpu"+pair[1].rstrip()+".csv"
 
 cmd = "sysctl vm.stats.vm"
 
-outfile = open('stats.csv','w+')
-for line in res:
-    outfile.write(line)
+outfile = open(file_string,'w+')
+# for line in res:
+    # outfile.write(line)
 outfile.write('time,')
 for i, st in enumerate(stats):
     if i is len(stats)-1:
